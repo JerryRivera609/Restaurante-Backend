@@ -15,7 +15,4 @@ public class Usuario {
     private String contrasenia;
     @Enumerated(EnumType.STRING)
     private String rol;
-
-
-
 }
