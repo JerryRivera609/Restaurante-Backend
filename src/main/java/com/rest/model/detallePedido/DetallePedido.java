@@ -1,4 +1,4 @@
-package com.rest.model.productos;
+package com.rest.model.detallePedido;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,22 +6,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.security.PrivateKey;
 @Entity
-@Table(name = "productos")
+@Table(name = "detalles_pedido")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 
-public class Productos {
+public class DetallePedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    @Enumerated(EnumType.STRING)
-    private String tipo;
+    @ManyToOne
+    @JoinColumn(name = "id_pedido")
+    private Long pedido;
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
+    private Long producto;
+    private Integer cantidad;
     private Double precio;
-    private String descripcion;
-    private String img;
+
+
 }

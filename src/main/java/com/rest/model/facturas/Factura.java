@@ -1,4 +1,4 @@
-package com.rest.model.pedidos;
+package com.rest.model.facturas;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,25 +11,22 @@ import java.time.OffsetDateTime;
 
 
 @Entity
-@Table(name = "pedidos")
+@Table(name = "facturas")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 
-public class Pedidos {
+public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "id_mesero")
-    private String mesero;
-    @ManyToOne
-    @JoinColumn(name = "id_mesa")
-    private  String mesa;
+    @OneToOne
+    @JoinColumn(name = "id_pedido")
+    private Long pedido;
+    private Double total;
     @CreationTimestamp
     @Column(name = "fecha_hora", columnDefinition = "TIMESTAMPTZ")
     private OffsetDateTime fechaHora;
-    @Enumerated(EnumType.STRING)
-    private String estado;
+
 }
